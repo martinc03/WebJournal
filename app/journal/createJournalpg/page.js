@@ -9,6 +9,7 @@ const CreateJournalPage = () => {
         <div>
             <NewEntry/>
         </div>
+        
     )
 }
 

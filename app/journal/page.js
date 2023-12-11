@@ -48,10 +48,11 @@ const HomePage = () => {
         </div>
       </div>
       <div className="flex justify-center mt-4">
-        <button onClick={handleSignOut} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        <button onClick={handleSignOut} className="bg-transparent text-white font-bold py-2 px-4 rounded" style={{ display: 'flex', alignItems: 'center', paddingTop: '10px', border: '1px solid white' }}>
+          <img src="/your-image.png" alt="Your Image" style={{ width: '20px', marginRight: '5px' }} /> {/* Add your image here */}
           Sign Out
         </button>
-      </div>    
+      </div>
     </div>
   );
 };
