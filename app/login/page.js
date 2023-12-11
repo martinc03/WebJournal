@@ -6,7 +6,7 @@ const LogInPage = () => {
   return (
     <div className="bg-cover bg-[url('/mp_background.png')] bg-center bg-no-repeat h-screen">     
       <div>
-        <AuthLogin />
+        <AuthLogin/>
       </div>
     </div>
   );

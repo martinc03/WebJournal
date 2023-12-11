@@ -56,6 +56,8 @@ function NewEntry() {
       }
     } catch (error) {
       console.error('Error adding entry:', error);
+      window.alert(`Error adding entry: ${error.message}`);
+
     }
   };
   return (

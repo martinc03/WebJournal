@@ -43,6 +43,7 @@ const ViewEntryPage = () => {
       setEntries((prevEntries) => prevEntries.filter((entry) => entry.id !== id));
     } catch (error) {
       console.error('Error deleting entry:', error);
+      window.alert(`Error deleting entry: ${error.message}`);
     }
   };
   
