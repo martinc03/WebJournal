@@ -1,14 +1,15 @@
 'use client'
 
 import React, { useState } from 'react';
-import CreateJournal from './new-journal-entry';
+import NewEntry from './new-journal-entry';
 
-const Page = () => {
+const CreateJournalPage = () => {
+    
     return(
         <div>
-            <CreateJournal></CreateJournal>
+            <NewEntry/>
         </div>
     )
 }
 
-export default Page;
+export default CreateJournalPage;

@@ -1,7 +1,8 @@
 'use client'
 import React from 'react';
 import Link from 'next/link';
-const HomePage = () => {
+
+function HomePage() {
   return (
     <div className="bg-cover bg-[url('/mp_background.png')] bg-center bg-no-repeat h-screen">     
       <h1 className="text-white text-4xl text-center pt-10"> Welcome</h1>

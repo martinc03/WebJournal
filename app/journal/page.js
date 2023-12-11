@@ -1,53 +1,59 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-import { useUserAuth } from './your-user-auth-hook'; // Replace 'your-user-auth-hook' with your actual hook
-
-const { default: HomePage } = require("@/app/page");
-
-const JournalHomePage = () => {
-    const { user } = useUserAuth();
-
-    if (!user) {
-        // Redirect to HomePage if user is not authenticated
-        return <Redirect to={HomePage} />;
-    }
-
-    return (
-        // Your content for the authenticated user here
-        <div>
-            <h1>Welcome to the Journal Home Page</h1>
-            {/* Add your authenticated content */}
-        </div>
-    );
-};
-
-export default JournalHomePage;
-
-
-/*
 'use client'
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import {Auth} from "./_utils/auth"
+import { UserAuth } from '../context/AuthContext';
+import { useRouter } from 'next/navigation';
+
 const HomePage = () => {
+  const { user, logOut } = UserAuth();
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      setLoading(false);
+    };
+    checkAuthentication();
+  }, [user]);
+  console.log('User:', user);
+
+  const handleSignOut = async () => {
+    try {
+      await logOut(); 
+      router.push('/')
+    } catch (error) {
+      console.error('Logout failed', error);
+    }
+  };
+  
+
+  if (!user || loading) {
+    return null;
+  }
+
+  // Render the content for authenticated users
   return (
-    <div className="bg-cover bg-[url('/mp_background.png')] bg-center bg-no-repeat h-screen">     
+    <div className="bg-cover bg-[url('/mp_background.png')] bg-center bg-no-repeat h-screen">
       <h1 className="text-white text-4xl text-center pt-10"> My WebJournal</h1>
       <div className="flex justify-center space-x-4 mt-4">
         <div>
-          <Link href="/Homepage">Home</Link>
+          <Link href="/journal">Home</Link>
         </div>
         <div>
-          <Link href="/createJournalpg">Create Entry</Link>
+          <Link href="/journal/createJournalpg">Create Entry</Link>
         </div>
         <div>
-          <Link href="/viewJournalETpg">View Entry</Link>
+          <Link href="/journal/viewJournalETpg">View Entry</Link>
         </div>
       </div>
-      <div>
-        <Auth/>
-      </div>
+      <div className="flex justify-center mt-4">
+        <button onClick={handleSignOut} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+          Sign Out
+        </button>
+      </div>    
     </div>
   );
 };
-*/
+
+export default HomePage;

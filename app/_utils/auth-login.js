@@ -1,22 +1,21 @@
-import { auth } from "./firebase";
-import { useState } from "react";
-import { signInWithEmailAndPassword } from 'firebase/auth';
+
+import { useState } from 'react';
+import { UserAuth } from '../context/AuthContext';
+import { useRouter } from 'next/navigation'; // Correct import statement
 
 export const AuthLogin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { onLogin } = UserAuth(); // Retrieve onLogin function from AuthContext
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
 
-  const onLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      console.log(user);
-      setLoggedIn(true);
+      await onLogin(email, password);
+      router.push('/journal');
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error(errorCode, errorMessage);
+      console.error('Login failed', error);
     }
   };
 
@@ -25,12 +24,12 @@ export const AuthLogin = () => {
   };
 
   const buttonStyle = {
-    color: 'black', 
+    color: 'black',
   };
 
   return (
     <div>
-      <form onSubmit={onLogin}>
+      <form onSubmit={handleSubmit}>
         <input
           style={inputStyle}
           placeholder="Email"
@@ -42,7 +41,9 @@ export const AuthLogin = () => {
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit" style={buttonStyle}>Login</button>
+        <button type="submit" style={buttonStyle}>
+          Login
+        </button>
       </form>
     </div>
   );

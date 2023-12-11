@@ -9,7 +9,6 @@ export const Auth = () => {
   const [password, setPassword] = useState("");
 
   const signUp = async () => {
-    e.preventDefault()
     try {
       await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) =>{
