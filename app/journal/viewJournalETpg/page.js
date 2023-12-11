@@ -6,7 +6,7 @@ import { UserAuth } from '@/app/context/AuthContext';
 import { useRouter } from 'next/navigation';
 
 const ViewEntryPage = () => {
-  const { user } = UserAuth(); // Access the user object from the authentication context
+  const { user } = UserAuth();  
   const [entries, setEntries] = useState([]);
   const router = useRouter();
 
@@ -17,7 +17,7 @@ const ViewEntryPage = () => {
           const entriesCollection = collection(db, 'DairyEntries');
           const userEntriesQuery = query(
             entriesCollection,
-            where('userUid', '==', user.uid) // Fetch entries for the current user
+            where('userUid', '==', user.uid)  
           );
           const entriesSnapshot = await getDocs(userEntriesQuery);
 
@@ -54,14 +54,17 @@ const ViewEntryPage = () => {
       <div style={{ width: '60%', margin: 'auto' }}>
         {entries.map((entry) => (
           <div key={entry.id} style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '20px', position: 'relative', display: 'flex' }}>
-            {entry.mood === 'Sad' && <img src="/sad.png" alt="Sad Entry Image" style={{ marginRight: '10px', width: '100px', height: '100px' }} />}
-            {entry.mood === 'Happy' && <img src="/happy.png" alt="Happy Entry Image" style={{ marginRight: '10px', width: '100px', height: '100px' }} />}
-            {entry.mood === 'Angry' && <img src="/angry.png" alt="Angry Entry Image" style={{ marginRight: '10px', width: '100px', height: '100px' }} />}
+            {entry.mood === 'Sad' && <img src="/sad.gif" alt="Sad Image, Source: https://tenor.com/users/ramiyiah" style={{ marginRight: '10px', width: '100px', height: '100px' }} />}
+            {entry.mood === 'Happy' && <img src="/happy.gif" alt="Happy Image Source: https://tenor.com/users/ramiyiah " style={{ marginRight: '10px', width: '100px', height: '100px' }} />}
+            {entry.mood === 'Angry' && <img src="/angry.gif" alt="Angry Image Source: https://tenor.com/users/ramiyiah " style={{ marginRight: '10px', width: '100px', height: '100px' }} />}
+            {entry.mood === 'Neutral' && <img src="/neutral.gif" alt="Neutral Image Source: https://tenor.com/users/ramiyiah" style={{ marginRight: '10px', width: '100px', height: '100px' }} />}
+            {entry.mood === 'Annoyed' && <img src="/annoyed.gif" alt="Annoyed Image Source: https://tenor.com/users/ramiyiah " style={{ marginRight: '10px', width: '100px', height: '100px' }} />}
+            {entry.mood === 'Bored' && <img src="/bored.gif" alt="Bored Image Source: https://tenor.com/users/ramiyiah " style={{ marginRight: '10px', width: '100px', height: '100px' }} />}
+            {entry.mood === 'Scared' && <img src="/scared.gif" alt="Scared Image Source: https://tenor.com/users/ramiyiah " style={{ marginRight: '10px', width: '100px', height: '100px' }} />}
 
             <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '40px' }}>
               <h2>{entry.title}</h2>
               <p>Date: {entry.date}</p>
-              <p>Mood: {entry.mood}</p>
               <p>Entry: {entry.text}</p>
             </div>
             <button

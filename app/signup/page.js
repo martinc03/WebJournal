@@ -5,7 +5,7 @@ import {Auth} from "../_utils/auth-signup"
 const SignUpPage = () => {
   
   return (
-    <div className="bg-cover bg-[url('/mp_background.png')] bg-center bg-no-repeat h-screen">     
+    <div className="bg-cover bg-[url('/signuppg.jpg')] bg-center bg-no-repeat h-screen">     
       <div>
         <Auth/>
       </div>

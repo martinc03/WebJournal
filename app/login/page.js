@@ -4,7 +4,7 @@ import {AuthLogin} from "../_utils/auth-login"
 
 const LogInPage = () => {
   return (
-    <div className="bg-cover bg-[url('/mp_background.png')] bg-center bg-no-repeat h-screen">     
+    <div className="bg-cover bg-[url('/loginpg.jpg')] bg-center bg-no-repeat h-screen">     
       <div>
         <AuthLogin/>
       </div>

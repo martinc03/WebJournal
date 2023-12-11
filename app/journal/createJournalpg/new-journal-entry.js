@@ -29,10 +29,9 @@ function NewEntry() {
   
     try {
       if (entry.title !== '' && entry.mood !== '' && entry.text !== '') {
-        // Replace 'collectionName' with your Firestore collection name
+
         const collectionRef = collection(db, "DairyEntries");
   
-        // Add a new document to Firestore
         await addDoc(collection(db, "DairyEntries"), {
           date: new Date().toISOString().slice(0, 10),
           title: entry.title.trim(),
@@ -41,7 +40,6 @@ function NewEntry() {
           userUid: user.uid,
         });
   
-        // Reset the form after adding the entry
         setEntry({
           date: new Date().toISOString().slice(0, 10),
           title: '',
@@ -51,7 +49,6 @@ function NewEntry() {
         console.log('Entry successfully saved to Firestore!');
         router.push('/journal/viewJournalETpg');
       } else {
-        // Handle cases where any field is empty
         console.log('Please fill in all fields');
       }
     } catch (error) {
@@ -75,7 +72,7 @@ function NewEntry() {
                 value={entry.title}
                 onChange={handleInput}
                 className="form-control"
-                style={{ color: 'black' }} // Set text color to black
+                style={{ color: 'black' }} 
               ></input>
             </div>
             <div className="col">
@@ -89,17 +86,21 @@ function NewEntry() {
                 className="form-control"
                 style={{ color: 'black' }}
               >
-                <option value="">Select Mood</option>
+                <option value="">How are you feeling today?</option>
                 <option value="Happy">Happy</option>
                 <option value="Sad">Sad</option>
                 <option value="Angry">Angry</option>
-                {/* Add more mood options as needed */}
+                <option value="Bored">Bored</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Scared">Scared</option>
+                <option value="Annoyed">Annoyed</option>
+
               </select>
             </div>
           </div>
           <div className="mb-3">
             <div>
-              <h3 style={{ padding: '5px' }}>Text</h3>
+              <h3 style={{ padding: '5px' }}>Entry</h3>
             </div>
             <textarea
               name="text"
@@ -107,7 +108,7 @@ function NewEntry() {
               onChange={handleInput}
               className="form-control"
               rows="8"
-              style={{ color: 'black' }} // Set text color to black
+              style={{ width: '500px', height: '300px', color: 'black', padding: '20px' }}
             ></textarea>
           </div>
           <div className="mb-3">
