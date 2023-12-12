@@ -35,58 +35,65 @@ const HomePage = () => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 'calc(100vh - 40px)', // Adjust the height to create spacing top and bottom (40px here)
-    padding: '20px', // Adjust the padding value as needed
+    height: 'calc(100vh - 40px)',
+    padding: '20px', 
   };
 
   const backgroundStyle = {
     backgroundImage: `url('/authhomepg.gif')`,
-    backgroundSize: 'cover', // Adjust background size as needed
+    backgroundSize: 'cover', 
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
-    height: '100%', // Set height to 100% to fill the container
-    width: '50%', // Set width to 100% to fill the container
+    height: '100%', 
+    width: '80%', 
   };
 
-  const contentStyle = {
-    textAlign: 'center',
-    color: 'white',
-    // Add any specific styles you want for the content here
-  };
 
-  
-  return (
-    <div style={backgroundContainerStyle}>
-      <div style={backgroundStyle}>
-        <div style={contentStyle}>
-          <h1 className="text-4xl"> My WebJournal</h1>
-          <div className="flex justify-center space-x-4 mt-4">
-            <div>
-              <Link href="/journal/createJournalpg">Create Entry</Link>
-            </div>
-            <div>
-              <Link href="/journal/viewJournalETpg">View Entry</Link>
-            </div>
+
+const contentStyle = {
+  textAlign: 'center',
+  color: 'white',
+  paddingTop: '30px', 
+  paddingBottom: '50px', 
+ 
+};
+
+const signOutButtonStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginTop: '20px',
+};
+
+return (
+  <div style={backgroundContainerStyle}>
+    <div style={backgroundStyle}>
+      <div style={contentStyle}>
+        <h1 className="text-4xl"> My WebJournal</h1>
+        <div style={{ paddingTop: '30px' }} className="flex justify-center space-x-4">
+          <div>
+            <Link href="/journal/createJournalpg">Create Entry</Link>
           </div>
-          <div className="flex justify-center mt-4">
-            <button
-              onClick={handleSignOut}
-              className="bg-transparent text-white font-bold py-2 px-4 rounded"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                paddingTop: '10px',
-                border: '1px solid white',
-              }}
-            >
-              <img src="/signouticon.png" alt="Sign Out" style={{ width: '20px', marginRight: '5px' }} />
-              Sign Out
-            </button>
+          <div>
+            <Link href="/journal/viewJournalETpg">View Entry</Link>
           </div>
+        </div>
+        <div style={signOutButtonStyle}>
+          <button
+            onClick={handleSignOut}
+            className="bg-transparent text-white font-bold py-2 px-4 rounded"
+            style={{
+              border: '1px solid white',
+            }}
+          >
+            Sign Out
+          </button>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
+
 };
 
 export default HomePage;

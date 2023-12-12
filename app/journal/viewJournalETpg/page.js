@@ -49,11 +49,11 @@ const ViewEntryPage = () => {
   
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', flexDirection: 'column' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', flexDirection: 'column',  backgroundImage: "url('/viewjournalpg.png')"}}>
       <h1 className="text-white text-4xl text-center pt-10">Dairy Entries</h1>
       <div style={{ width: '60%', margin: 'auto' }}>
         {entries.map((entry) => (
-          <div key={entry.id} style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '20px', position: 'relative', display: 'flex' }}>
+          <div key={entry.id} style={{ background: '#08065a', boxShadow: '0 4px 8px rgba(0,0,0,0.2)', border: '1px solid #ccc', padding: '10px', marginBottom: '20px', position: 'relative', display: 'flex', borderRadius: '10px' }}>
             {entry.mood === 'Sad' && <img src="/sad.gif" alt="Sad Image, Source: https://tenor.com/users/ramiyiah" style={{ marginRight: '10px', width: '100px', height: '100px' }} />}
             {entry.mood === 'Happy' && <img src="/happy.gif" alt="Happy Image Source: https://tenor.com/users/ramiyiah " style={{ marginRight: '10px', width: '100px', height: '100px' }} />}
             {entry.mood === 'Angry' && <img src="/angry.gif" alt="Angry Image Source: https://tenor.com/users/ramiyiah " style={{ marginRight: '10px', width: '100px', height: '100px' }} />}
